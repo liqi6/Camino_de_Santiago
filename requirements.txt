@@ -3,3 +3,8 @@ geopandas
 leafmap
 owslib
 streamlit
+
+# Keep for streamlit install
+streamlit-image-select==0.6.0
+pyogrio
+prettymapp
