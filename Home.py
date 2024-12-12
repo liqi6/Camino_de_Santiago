@@ -15,7 +15,7 @@ logo = "https://i.imgur.com/UbOXYAU.png"
 st.sidebar.image(logo)
 
 # Customize page title
-st.title("Streamlit for Geospatial Applications")
+st.title("Camino de Santiago")
 
 st.markdown(
     """
@@ -23,7 +23,7 @@ st.markdown(
     """
 )
 
-st.header("Instructions")
+st.header("介紹")
 
 markdown = """
 1. For the [GitHub repository](https://github.com/opengeos/streamlit-map-template) or [use it as a template](https://github.com/opengeos/streamlit-map-template/generate) for your own project.
