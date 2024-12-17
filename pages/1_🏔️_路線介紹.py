@@ -1,5 +1,6 @@
 import streamlit as st
-import leafmap.foliumap as leafmap
+#import leafmap.foliumap as leafmap
+import leafmap
 import plotly.graph_objects as go
 
 markdown = """
@@ -38,6 +39,9 @@ with col1:
     
     # m.to_streamlit(height=700)
     # Define route colors based on the dictionary
+   
+
+    # Define route colors based on the dictionary
     route_colors = {
         "法國之路": "#440154",  # Camino_Frances
         "北方之路": "#482878",  # Camino_Ingles
@@ -55,10 +59,10 @@ with col1:
     geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
     
     # Define a style function that uses route_colors based on feature properties
-  # Define a style function that uses route_colors based on feature properties
     def style_function(feature):
         # Get the route name from the feature properties
         route_name = feature['properties'].get('route', '')
+    
         # Get the color for the route, default to navy if not found
         color = route_colors.get(route_name, 'navy')
         return {
@@ -69,10 +73,10 @@ with col1:
     
     # Add the GeoJSON with dynamic colors based on route name
     m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style_function=style_function)
-
     
     # Display the map in Streamlit
     m.to_streamlit(height=700)
+
 
 
     st.header("intro")
