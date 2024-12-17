@@ -58,7 +58,7 @@ with col1:
   # Define a style function that uses route_colors based on feature properties
     def style_function(feature):
         # Get the route name from the feature properties
-        route_name = feature['properties'].get('route_name', '')
+        route_name = feature['properties'].get('route', '')
         # Get the color for the route, default to navy if not found
         color = route_colors.get(route_name, 'navy')
         return {
