@@ -28,5 +28,14 @@ with col1:
     m = leafmap.Map(
         locate_control=True, latlon_control=True, draw_export=True, minimap_control=True
     )
-    m.add_basemap(basemap)
+    #m.add_basemap(basemap)
+    m = leafmap.Map(minimap_control=True)
+    #m.add_basemap("OpenTopoMap")
+    m = leafmap.Map(center = [42.5, -4.0], zoom = 7 , minimap_control=True)
+    # Add GeoJSON line to the map
+    geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
+
+    # Define a style function to set line color to navy
+    style = {"color": "navy", "weight": 3, "opacity": 0.8}
+    m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style=style)
     m.to_streamlit(height=700)
