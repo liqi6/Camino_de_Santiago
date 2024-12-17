@@ -1,6 +1,6 @@
 import streamlit as st
-#import leafmap.foliumap as leafmap
-import leafmap
+import leafmap.foliumap as leafmap
+# import leafmap
 import plotly.graph_objects as go
 
 markdown = """
