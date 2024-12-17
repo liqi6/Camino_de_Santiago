@@ -3,6 +3,7 @@ geopandas
 leafmap
 owslib
 streamlit
+plotly
 
 # Keep for streamlit install
 streamlit-image-select==0.6.0
