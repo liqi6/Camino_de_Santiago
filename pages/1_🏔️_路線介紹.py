@@ -75,6 +75,17 @@ with col1:
     #     yaxis_title='路線名稱',
     #     template='plotly_white'
     # )
+    # Colors for each route
+    route_colors = {
+        "法國之路": "#440154",  # Camino_Frances
+        "北方之路": "#482878",  # Camino_Ingles
+        "葡萄牙之路": "#3e4a89",  # Camino_Portugues_central
+        "銀之路": "#31688e",  # Camino_Primitivo
+        "原始之路": "#21908d",  # Camino_del_Norte
+        "英格蘭之路": "#5dc963",  # Portugues_Coastal
+        "聖雅各海岸之路": "#f0f921",  # Via_de_la_Plata
+    }
+
 
     # Create a list of colors for the bars based on the routes
     bar_colors = [route_colors[route] for route in routes]
