@@ -1,5 +1,6 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
+import plotly.graph_objects as go
 
 markdown = """
 A Streamlit map template
@@ -12,7 +13,7 @@ logo = "https://chinchillaz.github.io/streamlit-hw/logo_sun-removebg-preview.png
 st.sidebar.image(logo)
 
 
-st.title("Interactive Map")
+st.title("路線介紹")
 
 col1, col2 = st.columns([4, 1])
 options = list(leafmap.basemaps.keys())
@@ -56,17 +57,26 @@ with col1:
     
     st.markdown(markdown)
 
-    # Data for the routes
+        # Data for the routes
     routes = ["法國之路", "北方之路", "葡萄牙之路", "銀之路", "原始之路", "英格蘭之路", "聖雅各海岸之路"]
     distances_km = [780, 825, 620, 1000, 321, 120, 825]
     
-    # Create a histogram
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.barh(routes, distances_km, color='skyblue')
-    ax.set_xlabel('距離 (公里)')
-    ax.set_title('朝聖者之路 路線長度分布')
+    # Create an interactive bar chart using Plotly
+    fig = go.Figure(go.Bar(
+        x=distances_km,
+        y=routes,
+        orientation='h',  # Horizontal bar chart
+        marker=dict(color='skyblue'),
+    ))
     
-    # Display the plot in Streamlit
-    st.pyplot(fig)
+    fig.update_layout(
+        title='朝聖者之路 路線長度分布',
+        xaxis_title='距離 (公里)',
+        yaxis_title='路線名稱',
+        template='plotly_white'
+    )
+    
+    # Display the interactive plot in Streamlit
+    st.plotly_chart(fig)
 
 
