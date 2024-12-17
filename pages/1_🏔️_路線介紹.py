@@ -26,16 +26,46 @@ with col2:
 
 with col1:
 
-    m = leafmap.Map(
-        locate_control=True, latlon_control=True, draw_export=True, minimap_control=True, center = [42.5, -4.0], zoom = 8 
-    )
-    m.add_basemap(basemap)
+    # m = leafmap.Map(
+    #     locate_control=True, latlon_control=True, draw_export=True, minimap_control=True, center = [42.5, -4.0], zoom = 8 
+    # )
+    # m.add_basemap(basemap)
 
-    geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
-    # Define a style function to set line color to navy
-    style = {"color": "navy", "weight": 3, "opacity": 0.8}
-    m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style=style)
+    # geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
+    # # Define a style function to set line color to navy
+    # style = {"color": "navy", "weight": 3, "opacity": 0.8}
+    # m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style=style)
     
+    # m.to_streamlit(height=700)
+    # Define route colors based on the dictionary
+    route_colors = {
+        "法國之路": "#440154",  # Camino_Frances
+        "北方之路": "#482878",  # Camino_Ingles
+        "葡萄牙之路": "#3e4a89",  # Camino_Portugues_central
+        "銀之路": "#31688e",  # Camino_Primitivo
+        "原始之路": "#21908d",  # Camino_del_Norte
+        "英格蘭之路": "#5dc963",  # Portugues_Coastal
+        "聖雅各海岸之路": "#f0f921",  # Via_de_la_Plata
+    }
+    
+    # Initialize the map
+    m = leafmap.Map(center=[42.5, -4.0], zoom=7, minimap_control=True)
+    
+    # GeoJSON URL for the Camino de Santiago route
+    geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
+    
+    # Define a style function that uses route_colors based on feature properties
+    def style_function(feature):
+        # Get the route name from the feature properties
+        route_name = feature['properties'].get('route_name', '')
+        # Get the color for the route, default to navy if not found
+        color = route_colors.get(route_name, 'navy')
+        return {"color": color, "weight": 3, "opacity": 0.8}
+    
+    # Add the GeoJSON with dynamic colors based on route name
+    m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style=style_function)
+    
+    # Display the map in Streamlit
     m.to_streamlit(height=700)
 
 
