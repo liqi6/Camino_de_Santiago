@@ -62,11 +62,29 @@ with col1:
     distances_km = [780, 825, 620, 1000, 321, 120, 825]
     
     # Create an interactive bar chart using Plotly
+    # fig = go.Figure(go.Bar(
+    #     x=distances_km,
+    #     y=routes,
+    #     orientation='h',  # Horizontal bar chart
+    #     marker=dict(color='skyblue'),
+    # ))
+    
+    # fig.update_layout(
+    #     title='朝聖者之路 路線長度分布',
+    #     xaxis_title='距離 (公里)',
+    #     yaxis_title='路線名稱',
+    #     template='plotly_white'
+    # )
+
+    # Create a list of colors for the bars based on the routes
+    bar_colors = [route_colors[route] for route in routes]
+    
+    # Create an interactive bar chart using Plotly
     fig = go.Figure(go.Bar(
         x=distances_km,
         y=routes,
         orientation='h',  # Horizontal bar chart
-        marker=dict(color='skyblue'),
+        marker=dict(color=bar_colors),
     ))
     
     fig.update_layout(
@@ -75,7 +93,7 @@ with col1:
         yaxis_title='路線名稱',
         template='plotly_white'
     )
-    
+        
     # Display the interactive plot in Streamlit
     st.plotly_chart(fig)
 
