@@ -31,16 +31,24 @@ with st.expander("See source code"):
         #     icon_names=["gear", "map", "leaf", "globe"],
         #     spin=True,
         #     add_legend=True,
-        # )
-        cities = "https://chinchillaz.github.io/streamlit-hw/country_interest.geojson"
-        m.add_geojson(cities, layer_name="Intersect towns")
+       # Initialize the map with center coordinates and zoom level
+        m = leafmap.Map(center=[42.5, -4.0], zoom=7, minimap_control=True)
         
-        m = leafmap.Map(minimap_control=True)
-        m = leafmap.Map(center = [42.5, -4.0], zoom = 7 , minimap_control=True)
+        # URL for the cities GeoJSON
+        cities_url = "https://chinchillaz.github.io/streamlit-hw/country_interest.geojson"
+        # URL for the Camino de Santiago GeoJSON
         geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
         
-        # Define a style function to set line color to navy
+        # Style for the Camino de Santiago routes
         style = {"color": "navy", "weight": 3, "opacity": 0.8}
+        
+        # Add the cities layer (Intersect towns)
+        m.add_geojson(cities_url, layer_name="Intersect towns")
+        
+        # Add the Camino de Santiago routes layer with style
         m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style=style)
+        
+        # Display the map
+        m.to_streamlit(height=700)
 
-m.to_streamlit(height=700)
+
