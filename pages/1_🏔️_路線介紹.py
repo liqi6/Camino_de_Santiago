@@ -56,4 +56,17 @@ with col1:
     
     st.markdown(markdown)
 
+# Data for the routes
+routes = ["法國之路", "北方之路", "葡萄牙之路", "銀之路", "原始之路", "英格蘭之路", "聖雅各海岸之路"]
+distances_km = [780, 825, 620, 1000, 321, 120, 825]
+
+# Create a histogram
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.barh(routes, distances_km, color='skyblue')
+ax.set_xlabel('距離 (公里)')
+ax.set_title('朝聖者之路 路線長度分布')
+
+# Display the plot in Streamlit
+st.pyplot(fig)
+
 
