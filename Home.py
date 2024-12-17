@@ -26,7 +26,6 @@ st.markdown(
 st.header("intro")
 
 markdown = """
-### 主要朝聖者之路表格
 
 | **路線名稱**      | **起點**                  | **終點**                        | **距離**       | **特色**                        |
 |------------------|-------------------------|--------------------------------|---------------|--------------------------------|
@@ -46,7 +45,31 @@ m = leafmap.Map(minimap_control=True)
 #m.add_basemap("OpenTopoMap")
 m = leafmap.Map(center = [42.5, -4.0], zoom = 7 , minimap_control=True)
 # Add GeoJSON line to the map
-geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
-m.add_geojson(geojson_url, layer_name="Camino de Santiago Route")
+# geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
+# m.add_geojson(geojson_url, layer_name="Camino de Santiago Route")
+
+# 設計 Winter 色系
+def generate_winter_colors(n):
+    cmap = plt.get_cmap("winter")  # 選擇 winter 色系
+    return [cmap(i) for i in np.linspace(0, 1, n)]  # 產生漸層顏色
+
+# 假設 GeoJSON 中有多個 "route"，自動分配顏色
+colors = generate_winter_colors(10)  # 預設 10 個不同顏色
+route_color_map = {}  # 用來儲存不同 "route" 與顏色的對應
+
+# 動態設定樣式
+def style_function(feature):
+    route_name = feature["properties"].get("route", "default")
+    if route_name not in route_color_map:
+        route_color_map[route_name] = colors[len(route_color_map) % len(colors)]  # 分配顏色
+    r, g, b, _ = route_color_map[route_name]
+    return {
+        "color": f"rgb({int(r*255)}, {int(g*255)}, {int(b*255)})",  # 將顏色轉換為 RGB
+        "weight": 3,  # 線條寬度
+        "opacity": 0.8,
+    }
+
+# 添加 GeoJSON 到地圖
+m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style_function=style_function)
 
 m.to_streamlit(height=500)
