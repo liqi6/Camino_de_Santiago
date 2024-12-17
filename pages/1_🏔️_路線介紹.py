@@ -8,7 +8,7 @@ A Streamlit map template
 
 st.sidebar.title("About")
 st.sidebar.info(markdown)
-logo = "https://i.imgur.com/UbOXYAU.png"
+logo = "https://chinchillaz.github.io/streamlit-hw/logo_sun-removebg-preview.png"
 st.sidebar.image(logo)
 
 
