@@ -72,7 +72,7 @@ with col1:
         }
     
     # Add the GeoJSON with dynamic colors based on route name
-    m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", fill_color=style_function)
+    m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style_function=style_function)
     
     # Display the map in Streamlit
     m.to_streamlit(height=700)
