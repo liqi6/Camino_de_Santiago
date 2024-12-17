@@ -55,15 +55,21 @@ with col1:
     geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
     
     # Define a style function that uses route_colors based on feature properties
+  # Define a style function that uses route_colors based on feature properties
     def style_function(feature):
         # Get the route name from the feature properties
         route_name = feature['properties'].get('route_name', '')
         # Get the color for the route, default to navy if not found
         color = route_colors.get(route_name, 'navy')
-        return {"color": color, "weight": 3, "opacity": 0.8}
+        return {
+            "color": color,
+            "weight": 3,
+            "opacity": 0.8
+        }
     
     # Add the GeoJSON with dynamic colors based on route name
-    m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style=style_function)
+    m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style_function=style_function)
+
     
     # Display the map in Streamlit
     m.to_streamlit(height=700)
