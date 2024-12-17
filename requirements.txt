@@ -1,11 +1,15 @@
---find-links=https://girder.github.io/large_image_wheels GDAL
+--find-links=https://girder.github.io/large_image_wheels
+GDAL
 geopandas
 leafmap
 owslib
 streamlit
 plotly
-
-# Keep for streamlit install
 streamlit-image-select==0.6.0
 pyogrio
 prettymapp
+
+# Local imports
+utils
+
+
