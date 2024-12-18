@@ -45,13 +45,15 @@ m = leafmap.Map(minimap_control=True)
 #m.add_basemap("OpenTopoMap")
 m = leafmap.Map(center = [42.5, -4.0], zoom = 7 , minimap_control=True)
 
+country_url = "https://chinchillaz.github.io/streamlit-hw/S_P_F_country.geojson"
+style = {"color": "grey", "weight": 1.5, "opacity": 0.9}
+m.add_geojson(country_url, layer_name="Country", style=style)
+
 # Add GeoJSON line to the map
 geojson_url = "https://chinchillaz.github.io/streamlit-hw/all_Camino_route.geojson"
 style = {"color": "navy", "weight": 3, "opacity": 0.8}
 m.add_geojson(geojson_url, layer_name="Camino de Santiago Route", style=style)
 
-country_url = "https://chinchillaz.github.io/streamlit-hw/S_P_F_country.geojson"
-style = {"color": "grey", "weight": 3, "opacity": 0.8}
-m.add_geojson(country_url, layer_name="Country", style=style)
+
 
 m.to_streamlit(height=500)
