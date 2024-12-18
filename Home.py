@@ -45,7 +45,7 @@ m = leafmap.Map(minimap_control=True)
 #m.add_basemap("OpenTopoMap")
 m = leafmap.Map(center = [42.5, -4.0], zoom = 7 , minimap_control=True)
 
-country_url = "https://chinchillaz.github.io/streamlit-hw/S_P_F_country.geojson"
+country_url = "https://chinchillaz.github.io/streamlit-hw/S_P_F_country_clear.geojson"
 style = {"color": "yellow", "weight": 1.5, "opacity": 0.9}
 m.add_geojson(country_url, layer_name="Country", style=style)
 
